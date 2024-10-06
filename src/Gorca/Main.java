@@ -66,6 +66,7 @@ public class Main extends JFrame {
 
         // Área para mostrar datos
         areaDatos = new JTextArea();
+        areaDatos.setPreferredSize(new Dimension(500, 200));
         JScrollPane scrollPane = new JScrollPane(areaDatos);
 
         // Agregar todo al frame
@@ -134,17 +135,19 @@ public class Main extends JFrame {
 
         clientes.add(cliente);
         areaDatos.setText("Cliente creado: " + cliente.getRazonSocial() + "\n");
+        leerClientes();
     }
 
     // Método para leer todos los clientes
     private void leerClientes() {
         areaDatos.setText("");  // Limpiar el área de texto
         for (Cliente cliente : clientes) {
-            areaDatos.append("ID: " + cliente.getIdCliente() + "\n"
-                    + "Razon Social: " + cliente.getRazonSocial() + "\n"
-                    + "RFC: " + cliente.getRfc() + "\n"
-                    + "Direccion: " + cliente.getDireccion() + "\n"
-                    + "Telefono: " + cliente.getTelefono() + "\n");
+            areaDatos.append("ID: " + cliente.getIdCliente() + " - "
+                    + "Razon Social: " + cliente.getRazonSocial() + " - "
+                    + "RFC: " + cliente.getRfc() + " - "
+                    + "Direccion: " + cliente.getDireccion() + " - "
+                    + "Telefono: " + cliente.getTelefono() + "\n"
+                    + "---------------------------------------------------------------------------------------------------------------------------------------------------------" + "\n");
         }
     }
 
@@ -162,6 +165,7 @@ public class Main extends JFrame {
             }
         }
         areaDatos.setText("Cliente no encontrado\n");
+        leerClientes();
     }
 
     // Método para eliminar un cliente
@@ -180,6 +184,7 @@ public class Main extends JFrame {
         } else {
             areaDatos.setText("Cliente no encontrado\n");
         }
+        leerClientes();
     }
 
     // Método para limpiar los campos de texto
@@ -205,6 +210,7 @@ public class Main extends JFrame {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("clientes.dat"))) {
             clientes = (ArrayList<Cliente>) ois.readObject();  // Cargar la lista de clientes
             areaDatos.setText("Datos cargados del archivo.\n");
+             leerClientes();
         } catch (Exception e) {
             areaDatos.setText("No se pudieron cargar los datos: " + e.getMessage() + "\n");
         }
