@@ -11,41 +11,44 @@ package Gorca;
 
 import java.io.Serializable;
 
-public class Cliente implements Serializable {
-       private static final long serialVersionUID = 1L; 
+public class Cliente extends Persona implements Serializable {
+       private static final long serialVersionUID = 3L; 
     private String idCliente;
     private String rfc;
     private String razonSocial;
     private String regimenFiscal;
     private String usoCFDI;
-    private String direccion;
-    private String telefono;
-
+    
+    
+    // Constructor sin parámetros (necesario para la deserialización)
+    public Cliente() {
+        super();  // Llama al constructor sin parámetros de Persona (si lo tiene)
+    }
+    
     // Constructor
-    public Cliente(String idCliente, String rfc, String razonSocial, String regimenFiscal, String usoCFDI, String direccion, String telefono1) {
+    public Cliente(String idCliente, String rfc, String razonSocial, String regimenFiscal, String usoCFDI, String direccion, String telefono) {
+     // Llamada al constructor de Persona
+        super(idCliente, razonSocial, direccion, telefono);
         this.idCliente = idCliente;
-        this.rfc = rfc;
         this.razonSocial = razonSocial;
+        this.rfc = rfc;
         this.regimenFiscal = regimenFiscal;
-        this.usoCFDI = usoCFDI;
-        this.direccion = direccion;
-        this.telefono = telefono1;
+        this.usoCFDI = usoCFDI;  
     }    
 
     // Getters y setters
     public String getIdCliente() { return idCliente; }
-    public String getRfc() { return rfc; }
-    public String getRazonSocial() {return razonSocial;}
-    public String getRegimenFiscal() { return regimenFiscal; }
-    public String getUsoCFDI() { return usoCFDI; }
-    public String getDireccion() { return direccion; }
-    public String getTelefono() { return telefono; }
-    
     public void setIdCliente(String idCliente) {this.idCliente = idCliente; }
+    
+    public String getRfc() { return rfc; }
     public void setRfc(String rfc) { this.rfc = rfc;}
+    
+    public String getRazonSocial() {return razonSocial;}
     public void setRazonSocial(String razonSocial) { this.razonSocial = razonSocial;}
+
+    public String getRegimenFiscal() { return regimenFiscal; }
     public void setRegimenFiscal(String regimenFiscal) { this.regimenFiscal = regimenFiscal;}
+
+    public String getUsoCFDI() { return usoCFDI; }
     public void setUsoCFDI(String usoCFDI) { this.usoCFDI = usoCFDI;}
-    public void setDireccion(String direccion) { this.direccion = direccion;}
-    public void setTelefono(String telefono) { this.telefono = telefono;}
 }
